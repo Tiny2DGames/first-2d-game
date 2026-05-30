@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="first-2d-game"
-config/features=PackedStringArray("4.6", "Mobile")
+run/main_scene="uid://bdqumroudp5ss"
+config/features=PackedStringArray("4.6", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
