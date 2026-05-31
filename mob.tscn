@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b2e14jy1myf8h" path="res://art/enemyWalking_2.png" id="6_7ulmv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3mxk"]
-radius = 35.128338
+radius = 31.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pcqmr"]
 animations = [{
@@ -58,9 +58,7 @@ shape = SubResource("CircleShape2D_b3mxk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=380501057]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
-animation = &"walk"
-frame = 1
-frame_progress = 0.14660597
+animation = &"fly"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=770930329]
 

@@ -18,13 +18,19 @@ public partial class Main : Node
 
 	private void OnMobTimerTimeout()
 	{
-		var mob = MobScene.Instantiate<Mob>();
-		var player = GetNode<Player>("Player");
+		var mobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+		mobSpawnLocation.ProgressRatio = GD.Randf();
 
-		var screenSize = GetViewport().GetVisibleRect().Size;
-		
-		mob.Position = screenSize * .5f;
-		mob.LinearVelocity = (player.Position - mob.Position).Normalized() * GD.RandRange(150, 250);
+		var player = GetNode<Player>("Player");
+		var mob = MobScene.Instantiate<Mob>();
+
+		var direction = player.Position - mobSpawnLocation.Position;
+		var angle = direction.Angle();
+		var velocity = new Vector2(GD.RandRange(25, 400), 0).Rotated(angle);
+
+		mob.Rotation = angle;
+		mob.LinearVelocity = velocity;
+		mob.Position = mobSpawnLocation.Position;
 
 		AddChild(mob);
 	}

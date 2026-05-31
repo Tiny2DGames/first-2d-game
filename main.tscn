@@ -4,14 +4,27 @@
 [ext_resource type="PackedScene" uid="uid://bxslq4fqmnhq6" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xtotsgnr7pg" path="res://mob.tscn" id="2_0xm2m"]
 
+[sub_resource type="Curve2D" id="Curve2D_h2yge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 1.0409429, 0, 0, 0, 0, 476.99994, 1.0409428, 0, 0, 0, 0, 477, 692.52106, 0, 0, 0, 0, 0, 691.562, 0, 0, 0, 0, -1, 1.0409429)
+}
+point_count = 5
+
 [node name="Main" type="Node" unique_id=1510180930]
 script = ExtResource("1_0xm2m")
 MobScene = ExtResource("2_0xm2m")
 
 [node name="MobTimer" type="Timer" parent="." unique_id=996387857]
-wait_time = 0.5
 autostart = true
 
 [node name="Player" parent="." unique_id=1131919003 instance=ExtResource("1_ig7tw")]
+
+[node name="MobPath" type="Path2D" parent="." unique_id=1281686508]
+position = Vector2(1.0041842, -1.0838761)
+scale = Vector2(1.0041841, 1.0412446)
+curve = SubResource("Curve2D_h2yge")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=49571604]
+position = Vector2(-1, 1.0409429)
 
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
