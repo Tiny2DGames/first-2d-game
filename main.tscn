@@ -27,4 +27,8 @@ position = Vector2(-1, 1.0409429)
 [node name="MobTimer" type="Timer" parent="." unique_id=996387857]
 autostart = true
 
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1351763630]
+autostart = true
+
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimeout"]
