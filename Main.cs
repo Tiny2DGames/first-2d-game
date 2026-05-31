@@ -8,20 +8,37 @@ public partial class Main : Node
 
 	private uint _score = 0;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GetNode<Player>("Player").Hit += OnPlayerHit;
+		var player = GetNode<Player>("Player");
+		var startPosition = GetNode<Marker2D>("StartPosition");
+
+		player.Hit += OnPlayerHit;
+		player.Position = startPosition.Position;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
 
+	private void OnStartTimeout()
+	{
+		GetNode<Timer>("MobTimer").Start();
+		GetNode<Timer>("ScoreTimer").Start();
+	}
+
 	private void OnPlayerHit()
 	{
-		GetTree().ReloadCurrentScene();
+		GetNode<Timer>("MobTimer").Stop();
+		GetNode<Timer>("ScoreTimer").Stop();
+
+		foreach (var child in GetChildren())
+		{
+			if (child is Mob)
+			{
+				child.QueueFree();
+			}
+		}
 	}
 
 	private void OnMobTimerTimeout()
