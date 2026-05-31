@@ -13,7 +13,6 @@ public partial class Main : Node
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
 
-		player.Hit += OnPlayerHit;
 		player.Position = startPosition.Position;
 	}
 
@@ -29,6 +28,8 @@ public partial class Main : Node
 
 	private void OnPlayerHit()
 	{
+		_score = 0;
+
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 

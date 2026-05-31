@@ -36,6 +36,7 @@ autostart = true
 [node name="StartPosition" type="Marker2D" parent="." unique_id=1038402741]
 position = Vector2(240, 360)
 
+[connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
 [connection signal="timeout" from="StartTimer" to="." method="OnStartTimeout"]
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimeout"]
