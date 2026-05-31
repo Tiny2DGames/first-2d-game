@@ -6,6 +6,9 @@ public partial class Player : Area2D
 	[Export]
 	public int Speed { get; set; } = 400;
 
+	[Signal]
+	public delegate void HitEventHandler();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -18,7 +21,7 @@ public partial class Player : Area2D
 
 	override public void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Input.GetVector(
+		var velocity = Input.GetVector(
 			"ui_left",
 			"ui_right",
 			"ui_up",
@@ -52,5 +55,14 @@ public partial class Player : Area2D
 		{
 			animatedSprite2D.Stop();
 		}
+	}
+
+	public void OnBodyEntered(Node2D body)
+	{
+		Hide();
+		EmitSignalHit();
+		GetNode<CollisionShape2D>(
+			"CollisionShape2D"
+		).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
 }
